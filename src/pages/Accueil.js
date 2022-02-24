@@ -6,7 +6,7 @@ import Movie from '../components/Movie';
 const accueil = () => {
     
     return (
-        <div>
+        <div className='pages'>
             <Header />
             <Search />
             <Movie />

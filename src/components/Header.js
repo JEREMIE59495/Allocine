@@ -5,9 +5,9 @@ const header = () => {
     return (
         <div className="head">
             <p>AlloMovie</p>
-            <ul>
-                <li>Home</li>
-                <li>Favoris</li>
+            <ul className='link-bloc'>
+                <li className='link'>Home</li>
+                <l className='link'>Favoris</l>
             </ul>
         </div>
     );

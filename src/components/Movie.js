@@ -16,12 +16,14 @@ const Movie = () => {
     },[]);
    
     return (
-        <div><ul>
+        <div >
+            <ul className='card-list'>
             {data.map((film)=>(
                 <Card film={film} key={film.title}/>
             ))}
             
-            </ul></div>
+            </ul>
+        </div>
     );
 };
 
