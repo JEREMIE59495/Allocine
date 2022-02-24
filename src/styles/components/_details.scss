@@ -1,0 +1,50 @@
+.details{
+    background:#ebe9ea;
+    padding-bottom: 2em;
+    margin:2em;
+}
+
+.detail_bloc{
+    display: flex;
+    justify-content: space-around;
+    padding-top:3em;
+    
+}
+
+.poster_movie{
+    width:20%;
+    height:25em;
+    box-shadow: 10px 10px 5px grey;
+
+}
+
+.description_movie{
+    width:50%;
+    padding:0.5em;
+    border-radius: 1em;
+    background:white;
+    position: relative;
+    box-shadow: 10px 10px 5px grey;
+    
+}
+
+.description_movie>h3 ,.description_movie>p{
+    text-align: left;
+}
+
+.note{
+    display:flex;
+    justify-content: space-around;
+    
+    position: absolute;
+    bottom: 0;
+}
+
+.note>p{
+    width:14em;
+   
+}
+.note>.votes{
+    border-left:1px solid grey ;
+    border-right:1px solid grey 
+}

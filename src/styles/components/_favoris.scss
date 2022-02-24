@@ -1,0 +1,21 @@
+.div_favoris{
+    border: 1px solid black;
+    margin-bottom:1em;
+    display:flex;
+    width:50%;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.favoris_img{
+    width: 4em;
+    height: 6em;
+  object-fit: cover;
+}
+
+.title_favoris{
+    margin-left:auto;
+    margin-right:auto;
+    vertical-align: middle;
+    height: 2em;
+}
