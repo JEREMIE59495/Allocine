@@ -31,8 +31,7 @@ const Detail = () => {
                         <p className='votes'>{data.vote_count} votes</p>
                         <p>Popularité : {data.popularity}</p>
                     </div>
-                </div>
-                
+                </div> 
             </div>
         </div>
     );

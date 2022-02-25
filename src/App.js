@@ -14,13 +14,11 @@ function App() {
         <BrowserRouter> 
             <Header/>
             <Routes>
-                <Route path="/" element={<Accueil/>}> </Route>
-            </Routes>
-            <Routes>
+                <Route path="/" element={<Accueil/>} /> 
+            
                 <Route path='/detail' element={<Detail />}/>
-            </Routes>
-            <Routes>
-            <Route path='/favoris' element={<Favoris />}/>
+           
+                <Route path='/favoris' element={<Favoris />}/>
             </Routes>
         </BrowserRouter>
         

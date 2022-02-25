@@ -4,15 +4,13 @@ const Favoris = () => {
     const favoris = localStorage.getItem('favoris')
     console.log(favoris)
     let tabFavoris =[];
-    if(favoris ==null){
-
-    }else{
+    if(favoris !=null){
         let splitStorage = favoris.split(',')
-   
+        //TODO : Gérer l'erreur de la console :(Warning: Each child in a list should have a unique "key" prop.)
+        
         for(let i=0;i<splitStorage.length;i++){
             let splitTab =splitStorage[i].split(';')
-            tabFavoris.push(splitTab)
-        }  
+            tabFavoris.push(splitTab) } 
     }
     
     console.log(tabFavoris)

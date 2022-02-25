@@ -1,23 +1,57 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-const cards = (props) => {
-    const {film} = props
-    
+const Cards = ({film}) => {
+    let bouton ;
+
     const addStorage =()=>{
-       
         window.localStorage.film = film.id
     }
 
+    const [toggleState,setToggleState]= useState(false);
+
     const favorite=()=>{ 
-        let favoris =film.title+';'+film.backdrop_path
-        var existing=localStorage.getItem('favoris')
+        let favoris =film.title+';'+film.backdrop_path+';'+film.id
+        let existing=localStorage.getItem('favoris')
+        console.log(favoris)
         existing = existing ? existing.split(',') : [];
+       // console.log(existing)
         existing.push(favoris)
-        localStorage.setItem('favoris',existing.toString())
+        localStorage.setItem('favoris',existing.toString()) 
+        setToggleState(!toggleState)   
     }
-   
-    
+
+let toto;
+
+    const removeFavoris=()=>{
+        let idFilm =film.id
+        let exist =[]
+        let newTab=[]
+        exist = localStorage.getItem('favoris')
+        exist = exist ? exist.split(',') : [];
+        //console.log(exist)
+         exist.map((tab)=>{
+              toto =tab.split(";")[2]
+              console.log(toto)
+
+             if (toto==idFilm)
+                newTab=exist.indexOf(tab)
+               // console.log(newTab)
+                    //TODO CONTROLER LES VALEURS DANS LE LOCALSTORAGE
+                exist.splice(newTab,1)
+                localStorage.setItem('favoris',exist.toString())        
+        })
+        //console.log(exist)
+        setToggleState(!toggleState)
+    }
+
+    if(!toggleState){
+        bouton = <button id="addFavoris"className='add-color btn-size' onClick={favorite}>Add</button>
+        }else {
+         bouton= <button className='remove-color btn-size'onClick={removeFavoris}>Remove</button>
+        }
+
+
     return (
         <div className='card'>  
             <div className='poster'>
@@ -33,13 +67,11 @@ const cards = (props) => {
                     <Link to="/detail">
                         <button className='detail-color btn-size' onClick={()=>addStorage()}>Détail</button>
                     </Link>
-                    <button className='add-color btn-size' onClick={()=>favorite()}>Add</button>
-                  {/*  <button className='remove-color btn-size'>Remove</button>*/}
-
+                    {bouton}  
                 </div>
             </div>
         </div>
     );
 };
 
-export default cards;
+export default Cards;

@@ -10,9 +10,7 @@ const Movie = () => {
         .get(
             "https://api.themoviedb.org/3/discover/movie?api_key=6c96d79bf66aed241beb96eff283df85" 
         )
-        .then((res)=>setData(res.data.results));
-       
-    
+        .then((res)=>setData(res.data.results))
     },[]);
    
     return (
