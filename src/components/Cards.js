@@ -3,53 +3,67 @@ import { Link } from 'react-router-dom';
 
 const Cards = ({film}) => {
     let bouton ;
+    let idMovie=[];
+    let tabIdMovie =[]
 
     const addStorage =()=>{
         window.localStorage.film = film.id
     }
-
+   
     const [toggleState,setToggleState]= useState(false);
 
+    //Ajouter un element au storage
     const favorite=()=>{ 
+        //On recupere les element de lobj selectionné
         let favoris =film.title+';'+film.backdrop_path+';'+film.id
+        //On recupere le local storage
         let existing=localStorage.getItem('favoris')
-        console.log(favoris)
+        //On regardi si 1 element existe si oui on mets une virgule
         existing = existing ? existing.split(',') : [];
-       // console.log(existing)
+        //On envoie les element au local storage
         existing.push(favoris)
         localStorage.setItem('favoris',existing.toString()) 
         setToggleState(!toggleState)   
     }
 
-let toto;
-
     const removeFavoris=()=>{
         let idFilm =film.id
-        let exist =[]
         let newTab=[]
-        exist = localStorage.getItem('favoris')
+        //On recupere le local storage
+        let exist = localStorage.getItem('favoris')
         exist = exist ? exist.split(',') : [];
-        //console.log(exist)
-         exist.map((tab)=>{
-              toto =tab.split(";")[2]
-              console.log(toto)
-
-             if (toto==idFilm)
+        // On destructure en faisant uen boucle
+        exist.map((tab)=>{
+                //On recupere l'id 
+                idMovie =tab.split(";")[2]
+                //Si id du storage et egal a un id du film selectionné
+                if (idMovie==idFilm)
+                //On recupere l'index
                 newTab=exist.indexOf(tab)
-               // console.log(newTab)
-                    //TODO CONTROLER LES VALEURS DANS LE LOCALSTORAGE
+                //On enleve cette element par l index
                 exist.splice(newTab,1)
+                //on envoie au local storage
                 localStorage.setItem('favoris',exist.toString())        
         })
-        //console.log(exist)
         setToggleState(!toggleState)
-    }
+    } 
 
-    if(!toggleState){
-        bouton = <button id="addFavoris"className='add-color btn-size' onClick={favorite}>Add</button>
-        }else {
-         bouton= <button className='remove-color btn-size'onClick={removeFavoris}>Remove</button>
-        }
+    // ON CONTROLE LE STORAGE AU DEPART
+    bouton = <button id="addFavoris"className='add-color btn-size' onClick={favorite}>Add</button>
+     
+    //On recupere le storage 
+    let storage=localStorage.getItem('favoris')
+    storage = storage ? storage.split(',') : [];
+       
+    for(let i=0;i<storage.length;i++){
+        let movieList=storage[i].split(";")
+        let idMovie =movieList[2]
+        tabIdMovie.push(idMovie)
+        tabIdMovie.map((movie)=>{
+            if(  film.id==movie){
+                bouton= <button className='remove-color btn-size' onClick={removeFavoris}>Remove</button>}
+            }
+    )}
 
 
     return (
