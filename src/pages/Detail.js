@@ -1,18 +1,14 @@
 import React ,{useState,useEffect}from 'react';
-import axios from 'axios'
+import { movieId } from '../components/api';
+
 
 
 const Detail = () => {
     const [data,setData] = useState([]);
-    const idMovie = localStorage.getItem('film')
-  
-    useEffect(()=>{
-        axios
-        .get(
-            `https://api.themoviedb.org/3/movie/${idMovie}?api_key=6c96d79bf66aed241beb96eff283df85`   
-        )
+
+    useEffect(()=>{   
+        movieId()
         .then((res)=>setData(res.data));
-      
     },[]);
     return (
         

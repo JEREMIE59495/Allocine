@@ -1,22 +1,47 @@
 import React ,{useState,useEffect}from 'react';
-import axios from "axios";
-import Card from './Cards';
 
-const Movie = () => {
+import Card from './Cards';
+import  { getAllMovie } from "./api"
+const Movie  = () => {
     const [data,setData] = useState([]);
 
     useEffect(()=>{
-        axios
-        .get(
-            "https://api.themoviedb.org/3/discover/movie?api_key=6c96d79bf66aed241beb96eff283df85" 
-        )
+        getAllMovie()
         .then((res)=>setData(res.data.results))
+        
+            
     },[]);
+
+        //test
+        const [searchTerm,setSearchTerm]=useState("")
+
+        const handleSearchTerm=()=>{
+           
+          let val = document.getElementById('search').value
+           console.log(val);
+         // let toto= e.target.value
+           setSearchTerm(val)
+              console.log(searchTerm);
+       }
+    
    
     return (
         <div >
+            <div className="nav-search">
+            <input className=" search" type="text" placeholder='search' id="search" />
+            <select>
+                <option>Anglais</option>
+                <option>Francais</option>
+            </select>
+            <button onClick={handleSearchTerm}>envoyer</button>
+        </div>
             <ul className='card-list'>
-            {data.map((film)=>(
+            {data
+            .filter((film)=>{
+                console.log(film.original_title.toLowerCase().includes(searchTerm));
+                return film.original_title.includes(searchTerm)
+            })
+            .map((film)=>(
                 <Card film={film} key={film.title}/>
             ))}
             
