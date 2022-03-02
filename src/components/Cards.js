@@ -20,31 +20,35 @@ const Cards = ({film}) => {
         let existing=localStorage.getItem('favoris')
         //On regardi si 1 element existe si oui on mets une virgule
         existing = existing ? existing.split(',') : [];
+        idMovie=existing
         //On envoie les element au local storage
         existing.push(favoris)
         localStorage.setItem('favoris',existing.toString()) 
         setToggleState(!toggleState)   
     }
+ let idFilm =film.id
+        
+    const removeFavoris=()=>{   
+        let tabOfId=[]
+        let newTab;
 
-    const removeFavoris=()=>{
-        let idFilm =film.id
-        let newTab=[]
         //On recupere le local storage
         let exist = localStorage.getItem('favoris')
         exist = exist ? exist.split(',') : [];
         // On destructure en faisant uen boucle
-        exist.map((tab)=>{
-                //On recupere l'id 
-                idMovie =tab.split(";")[2]
-                //Si id du storage et egal a un id du film selectionné
-                if (idMovie==idFilm)
-                //On recupere l'index
-                newTab=exist.indexOf(tab)
-                //On enleve cette element par l index
-                exist.splice(newTab,1)
-                //on envoie au local storage
-                localStorage.setItem('favoris',exist.toString())        
-        })
+        exist.map((tab)=>{ 
+            //On recupere l'index
+            tabOfId=exist.indexOf(tab)  
+            if (tab.split(';')[2]==idFilm){
+                newTab=tabOfId;
+            }
+        }) 
+
+        //On enleve cette element par l index
+        exist.splice(newTab,1) 
+        //on envoie au local storage
+        localStorage.setItem('favoris',exist.toString())        
+                
         setToggleState(!toggleState)
     } 
 

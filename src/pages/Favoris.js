@@ -13,15 +13,14 @@ const Favoris = () => {
            
     }
      return (
-                <div key={favoris}>
+                <div >
                     
                     <h1>Mes favoris</h1>
                  
                         {tabFavoris.map((fav)=>(
-                            <div className='div_favoris'  key={favoris}>
+                            <div className='div_favoris'  key={fav}>
                             <img className="favoris_img"src={`https://image.tmdb.org/t/p/original${fav[1]}`} alt={`affiche ${fav[0]}`}/>
                             <h2 className='title_favoris'>{fav[0]}</h2>
-                            <button className='remove-color close-size' >X</button>
                             </div>
                         ))}
                
